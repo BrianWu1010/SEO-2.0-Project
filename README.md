@@ -6,6 +6,7 @@ The final consultant report, included in this repository as a PDF file, summariz
 
 - A summary of experiments and methods
 - Quantitative comparisons across ChatGPT-4o, Copilot, Gemini, and traditional search engines (Google, Bing)
+- Analysis on Amazon Rufus
 - Analysis of source diversity, ranking consistency, and citation patterns
 - Practical suggestions for SEO 2.0 strategies
 - Visuals and figures directly generated from our notebooks
