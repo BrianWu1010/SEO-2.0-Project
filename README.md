@@ -52,3 +52,42 @@ Each notebook was iteratively developed based on project needs and contributed d
 ### src/jiamei/
 This folder contains the .py source files used to support and automate portions of my analysis. It includes helper functions for web search result collection, URL normalization, overlap visualization, and formatted output saving for downstream use in plots and summary tables.
 
+
+## 🗂️ Personal Contribution — Wensha Sun
+Wensha was responsible for integrating and orchestrating various LLM (Large Language Model) services to help extract meaningful insights from user queries. Using LangChain as the framework, Wensha connected to APIs from OpenAI, Perplexity, Openperplex, Hugging Face, Sonar and Sonar Pro to generate responses based on carefully designed prompts. The main goal was to explore brand popularity within specific product categories by analyzing which brands were most frequently recommended by LLMs in response to typical consumer questions.
+
+- Integrated multiple LLM APIs (OpenAI, Perplexity, Openperplex, Hugging Face, Sonar, Sonar Pro) using LangChain.
+- Engineered domain-specific prompts to extract brand recommendations across different categories.
+- Developed automated pipelines to query LLMs and parse the results.
+- Focused on five product categories relevant to Nestlé: cat food, dog food, cat litter, coffee, and baking ingredients. Analyzed and visualized which brands were most frequently mentioned by LLMs, including the ranking order in their responses (e.g., when LLMs list “1. Brand A 2. Brand B,” the position indicates perceived recommendation strength).
+
+### data/wensha/
+The data/ directory contains the raw output collected from various large language models (LLMs) during web search and product recommendation experiments. These outputs represent unprocessed responses from models such as ChatGPT (OpenAI), Perplexity AI, and HuggingFace-hosted models, used in response to structured prompts about consumer products.
+
+The purpose of this raw data is to support comparative analysis, consistency checks, and source quality evaluations across different LLMs. Future steps in the workflow involve parsing, cleaning, and scoring this data for model benchmarking and downstream applications.
+
+### notebooks/wensha/
+The code focuses on evaluating and comparing the performance of various LLMs (Language Learning Models) — specifically OpenAI's ChatGPT, Perplexity AI, and HuggingFace models — in the context of web search and product recommendation tasks. 
+Descriptions of the project across its key functional areas are as follows:
+
+- **data_collect.py**
+- **LLM-Based Web Search and Comparison**
+The project initiates by setting up three distinct large language models — OpenAI’s ChatGPT, Perplexity AI, and HuggingFace's hosted models — to perform structured web searches.
+Using LangChain integrations, the notebook standardizes inputs and outputs across all models. This allows the same prompt to be used with each model for fair comparison.
+The objective is to evaluate how effectively each model retrieves useful and context-rich URLs when prompted to find information about specific consumer products.
+
+- **Structured Product Data Collection**
+A core part of the project involves defining a schema (Product class) for structuring information about products. Each product entry contains attributes like brand, short and long titles, a one-line description, and a ranked list of web sources with justifications for product recommendations. This structure ensures consistent formatting across LLM outputs and facilitates downstream processing or analysis. The use of typed pydantic models helps validate data collected from multiple models, ensuring it meets expectations for web search reliability and relevance.
+
+- **Result Consistency and Quality Analysis**
+After collecting the product-related data from each LLM, the notebook performs a consistency analysis across different models. This task evaluates whether the outputs are reproducible and coherent for the same prompt over multiple runs. The goal here is to identify models that provide stable, trustworthy recommendations — a crucial factor for tasks like market research, affiliate content creation, or product curation.
+
+- **Comparative Analysis of Web Sources**
+The final section centers around analyzing the quality of web sources returned by the different LLMs.
+The notebook checks whether the URLs provided lead to authoritative, content-rich pages that genuinely explain why a product is recommended. This qualitative filter aims to weed out superficial or ad-focused content, promoting more trustworthy outputs. Such an evaluation is vital for use cases that depend on content sourcing, such as e-commerce content generation or SEO-oriented research.
+
+- **API Key Management and Model Orchestration**
+The notebook also includes secure management of API keys and model credentials, using getpass to prompt for sensitive data like OpenAI, Perplexity, and HuggingFace tokens. This enables seamless model switching and orchestrated querying across platforms. This orchestration layer acts as the foundation for consistent and reusable evaluation workflows.
+
+- **Prompt Engineering and Output Parsing**
+Finally, the notebook integrates PromptTemplate and multiple output parsers (Markdown and JSON) to manage how prompts are formatted and how outputs are interpreted. This allows the system to flexibly adapt the same logical task to different LLMs and retrieve structured results in the desired format, improving both model compatibility and downstream processing potential.
