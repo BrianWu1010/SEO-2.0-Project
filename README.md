@@ -91,3 +91,29 @@ The notebook also includes secure management of API keys and model credentials, 
 
 - **Prompt Engineering and Output Parsing**
 Finally, the notebook integrates PromptTemplate and multiple output parsers (Markdown and JSON) to manage how prompts are formatted and how outputs are interpreted. This allows the system to flexibly adapt the same logical task to different LLMs and retrieve structured results in the desired format, improving both model compatibility and downstream processing potential.
+
+## 🗂️ Personal Contribution — Boyuan Wu
+
+Boyuan contributed a complete **pipeline for auditing LLM product rankings** across categories, focusing on **structured data extraction**, **reasoning traceability**, and **ranking consistency analysis**. His work emphasized automation, traceability, and reproducibility across LLM-based SEO pipelines.
+
+### Key Responsibilities
+
+- Designed Python scripts to **collect, test, and validate** LLM-generated product rankings, including `collect_all_categories.py`, `test_one_category.py`, and `test_one_category_instant_coffee.py`.
+- Implemented `rank_audit.py` to **parse ranking justifications**, extract sources, and audit product-level consistency and transparency.
+- Integrated Bing Grounding via LangChain to ground product outputs, captured in `sample_agents_bing_grounding.py`.
+- Organized results into **machine-readable formats** (`.csv`, `.json`) for downstream scoring and error handling.
+
+### data/boyuan/
+
+Contains raw and audited ranking outputs for each product category.
+
+- `instant_coffee_rank_audit.csv`: Output audit table summarizing the rankings given by LLMs across different prompts and temperatures.
+- `instant_coffee_rank_audit.json`: JSON structure that includes reasoning explanations for each ranked item, useful for source attribution analysis.
+
+### src/boyuan/
+
+- `collect_all_categories.py`: Crawls product categories and collects ranking results from the LLM APIs.
+- `test_one_category.py` / `test_one_category_instant_coffee.py`: Run LLM-based tests for a specific product category under multiple temperature and round settings.
+- `rank_audit.py`: Processes and audits the LLM output by evaluating consistency in product rankings, extracting cited sources, and identifying hallucinations or missing justification.
+- `sample_agents_bing_grounding.py`: Demonstrates grounding LLM product outputs using Bing search APIs via LangChain.
+
